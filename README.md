@@ -1,1 +1,1 @@
-This repository converts latex resume to HTML to be hosted on devinhadley.com
+This repository converts a LaTeX resume to HTML for hosting on devinhadley.com

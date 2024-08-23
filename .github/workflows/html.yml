@@ -1,0 +1,33 @@
+name: Build and Deploy Resume
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your main branch if necessary
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up LaTeX environment
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: resume.tex
+        extra_packages: >
+          texlive-latex-recommended
+          texlive-fonts-recommended
+          texlive-latex-extra
+          pandoc
+
+    - name: Convert LaTeX to HTML
+      run: pandoc resume.tex -s -o resume.html --from=latex --to=html5
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./resume.html

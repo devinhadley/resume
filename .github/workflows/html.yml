@@ -1,4 +1,4 @@
-name: Build and Deploy Resume
+name: Convert and Deploy Resume
 
 on:
   push:
@@ -13,15 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up LaTeX environment
-      uses: xu-cheng/latex-action@v2
-      with:
-        root_file: resume.tex
-        extra_packages: >
-          texlive-latex-recommended
-          texlive-fonts-recommended
-          texlive-latex-extra
-          pandoc
+    - name: Install LaTeX and Pandoc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended pandoc
 
     - name: Convert LaTeX to HTML
       run: pandoc resume.tex -s -o resume.html --from=latex --to=html5
@@ -30,4 +25,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./resume.html
+        publish_dir: ./
+        keep_files: false

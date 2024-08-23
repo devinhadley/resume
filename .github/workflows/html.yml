@@ -3,7 +3,7 @@ name: Convert and Deploy Resume
 on:
   push:
     branches:
-      - main  # Ensure this is your default branch
+      - main
 
 jobs:
   build:

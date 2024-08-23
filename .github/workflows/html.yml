@@ -21,7 +21,7 @@ jobs:
     - name: Convert LaTeX to HTML
       run: |
         mkdir output
-        pandoc resume.tex -s -o output/index.html --from=latex --to=html5
+        pandoc resume.tex -s -o index.html --from=latex --to=html5 --css=style.css
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4

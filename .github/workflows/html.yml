@@ -21,11 +21,12 @@ jobs:
     - name: Convert LaTeX to HTML
       run: |
         mkdir output
-        pandoc resume.tex -s -o index.html --from=latex --to=html5 --css=style.css
+        pandoc resume.tex -s -o output/index.html --from=latex --to=html5 --css=style.css
+        cp style.css output/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
-        cname: devinhadley.com  # Ensure CNAME is set correctly
+        cname: devinhadley.com

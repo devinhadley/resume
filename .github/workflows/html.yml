@@ -19,7 +19,7 @@ jobs:
         sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended pandoc
 
     - name: Convert LaTeX to HTML
-      run: pandoc resume.tex -s -o resume.html --from=latex --to=html5
+      run: pandoc resume.tex -s -o index.html --from=latex --to=html5
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
